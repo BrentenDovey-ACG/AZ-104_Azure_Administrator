@@ -1,6 +1,6 @@
-#Instructions for Instrumenting Application Insights
+# Instructions for Instrumenting Application Insights
 
-##Create and Setup the Application
+## Create and Setup the Application
 In the cloud shell run this command to create a sample application and change to its directory:
 ```
 dotnet new mvc -o demowebapp
