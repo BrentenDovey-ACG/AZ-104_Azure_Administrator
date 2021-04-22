@@ -1,0 +1,21 @@
+# build Docker image
+docker build --tag containerdemo .
+
+# list Docker images
+docker image ls
+
+# run instance of Docker container on docker host
+docker run -p 1234:80 containerdemo
+
+# verify Docker container is running using http://localhost:1234 in browser
+
+# create azure container registry in the Azure Portal
+
+# login to Docker container registry
+docker login cloudchaseregdemo.azurecr.io --username <your_acr_username>
+
+# tag Docker image
+docker tag containerdemo <acr>/myimages/containerdemo:latest
+
+# push container to azure container registry
+docker push <acr>/myimages/containerdemo:latest

@@ -1,0 +1,27 @@
+# Create a Web App from Cloud Shell using PowerShell
+# NOTE: This exercise was completed in the ACG Azure Cloud Sandbox
+
+# create dotnet web app
+dotnet new mvc -o demowebapp
+
+# change directory to demowebapp
+cd ./demowebapp/
+
+# publish dotnet app to pub directory
+dotnet publish -o pub
+
+# change to pub directory
+cd ./pub/
+
+# zip app files for deployment
+zip -r site.zip *
+
+# create variables
+$rg = (Get-AzResourceGroup).ResourceGroupName
+$appname = "<your_app_name"
+
+# publish dotnet app to webapp
+az webapp deployment source config-zip `
+--src ./site.zip `
+--resource-group $rg `
+--name $appname

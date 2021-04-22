@@ -1,0 +1,28 @@
+# Generalize and Azure Linux VM
+# NOTE: This exercise is completed using the commands via the ACG Azure Cloud Sandbox
+
+# Login to VM
+ssh <user>@<public_ip>
+
+# Deprovision machine and delete machine specific files
+sudo waagent -deprovision+user
+exit
+
+# Set variables
+$rg = (Get-AzResourceGroup).ResourceGroupName
+$myvm = az vm list --query [].name -o tsv
+
+# Deallocate VM (may take a few minutes)
+az vm deallocate `
+    --resource-group $rg `
+    --name $myvm
+
+# Generalize VM
+az vm generalize `
+    --resource-group $rg `
+    --name $myvm
+
+# Create an Image of VM in same region as the source vm (may take a minute)
+az image create `
+    --resource-group $rg `
+    --name myImage --source $myvm
