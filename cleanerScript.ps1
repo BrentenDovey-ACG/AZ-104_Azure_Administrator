@@ -15,7 +15,7 @@ Get-AzResource | ForEach-Object -Parallel {
     else {
         try {
             "Deleting... $resourceName"
-            Remove-AzResource -Id $resourceId -Force
+            Remove-AzResource -Id $resourceId -Force | Out-Null
         }
         catch {
             "Failed to Delete... $resourceName"
