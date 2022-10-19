@@ -11,7 +11,7 @@ $rgs # call the variable to return information stored in the variable
 # Create VM and configuration details for deployment
 az vm create `
 --resource-group $rgs.ResourceGroupName `
---location $rgs.Location
+--location $rgs.Location `
 --name vm-demo-001 `
 --image UbuntuLTS `
 --admin-username cloudchase `
@@ -22,7 +22,7 @@ Get-AzResource | Format-Table # Get all Azure resources in table format
 
 # DO NOT RUN IN PRODUCTION ###################################################################################################################################
 # WARNING: This block of code is extremely destructive and will delete all resource(s) forcefully excluding only the storage account configured for cloudshell
-Get-AzResource | ForEach-Object {
+Get-AzResource | ForEach-Object -Parallel {
     # Set variables
     $resource = $_
     $resourceName = $resource.Name
