@@ -20,6 +20,6 @@ az vm create `
 
 Get-AzResource | Format-Table # Get all Azure resources in table format
 
-Invoke-WebRequest -Uri "https://github.com/BrentenDovey-ACG/AZ-104_Azure_Administrator/blob/master/cleanerScript.ps1" -OutFile ~/cleanerScript.ps1
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/BrentenDovey-ACG/AZ-104_Azure_Administrator/master/cleanerScript.ps1" -OutFile ~/cleanerScript.ps1
 # This will download the script you can run to clean up the environment
 
