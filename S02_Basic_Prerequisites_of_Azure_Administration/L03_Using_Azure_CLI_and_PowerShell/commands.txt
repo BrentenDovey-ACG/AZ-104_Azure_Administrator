@@ -20,3 +20,4 @@ az vm create `
 
 Get-AzResource | Format-Table # Get all Azure resources in table format
 
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/BrentenDovey-ACG/AZ-104_Azure_Administrator/master/removeAll.json" -OutFile ~/removeAll.json
