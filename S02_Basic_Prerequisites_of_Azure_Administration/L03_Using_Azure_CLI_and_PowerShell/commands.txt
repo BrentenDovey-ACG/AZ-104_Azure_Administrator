@@ -4,14 +4,14 @@ az group list # Azure CLI command that allows us to list out resource groups
 
 Get-AzResourceGroup # PowerShell cmdlet that allows us to get information about resource groups
 
-$rgs = Get-AzResourceGroup # Output our resource groups by name as tab separated values and assign it to a variable
+$rg = Get-AzResourceGroup # Output our resource groups by name as tab separated values and assign it to a variable
 
-$rgs # call the variable to return information stored in the variable
+$rg # call the variable to return information stored in the variable
 
 # Create VM and configuration details for deployment
 az vm create `
 --resource-group $rgs.ResourceGroupName `
---location $rgs.Location `
+--location $rg.Location `
 --name vm-demo-001 `
 --image UbuntuLTS `
 --admin-username cloudchase `
@@ -20,6 +20,7 @@ az vm create `
 
 Get-AzResource | Format-Table # Get all Azure resources in table format
 
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/BrentenDovey-ACG/AZ-104_Azure_Administrator/master/cleanerScript.ps1" -OutFile ~/cleanerScript.ps1
-# This will download the script you can run to clean up the environment
+
+# Uncomment the below line to download the script for cleaning up the Azure cloud sandbox. Please be advised that this script is destructive.
+# Invoke-WebRequest -Uri "https://raw.githubusercontent.com/BrentenDovey-ACG/AZ-104_Azure_Administrator/master/cleanerScript.ps1" -OutFile ~/cleanerScript.ps1
 
