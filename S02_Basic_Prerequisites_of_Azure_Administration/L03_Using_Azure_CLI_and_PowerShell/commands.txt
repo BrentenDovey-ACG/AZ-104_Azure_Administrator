@@ -10,7 +10,7 @@ $rg # call the variable to return information stored in the variable
 
 # Create VM and configuration details for deployment
 az vm create `
---resource-group $rgs.ResourceGroupName `
+--resource-group $rg.ResourceGroupName `
 --location $rg.Location `
 --name vm-demo-001 `
 --image UbuntuLTS `
