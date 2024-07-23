@@ -1,26 +1,33 @@
-clear # clear command will clear up the cloud shell display and bring the command prompt to the top of the terminal window
+# Clear command will clear up the Cloud Shell display and bring the command prompt to the top of the terminal window
+clear
 
-az group list # Azure CLI command that allows us to list out resource groups
+# Azure CLI command that lists out resource groups
+az group list
 
-Get-AzResourceGroup # PowerShell cmdlet that allows us to get information about resource groups
+# PowerShell cmdlet that gets information about resource groups
+$rg = Get-AzResourceGroup
 
-$rg = Get-AzResourceGroup # Output our resource groups by name as tab separated values and assign it to a variable
+# Output resource groups by name as tab-separated values and assign it to a variable
+$rg
 
-$rg # call the variable to return information stored in the variable
+# Select a specific resource group to use
+$selectedRg = $rg[0] # Assuming you want to use the first resource group
 
 # Create VM and configuration details for deployment
 az vm create `
---resource-group $rgs.ResourceGroupName `
---location $rg.Location `
+--resource-group "$($selectedRg.ResourceGroupName)" `
+--location "$($selectedRg.Location)" `
 --name vm-demo-001 `
---image UbuntuLTS `
+--image Ubuntu2204 `
 --admin-username cloudchase `
 --generate-ssh-keys `
 --no-wait
 
-Get-AzResource | Format-Table # Get all Azure resources in table format
+# Pause here to give the resources time to spin up.
 
+# Get all Azure resources in table format
+Get-AzResource | Format-Table
 
-# Uncomment the below line to download the script for cleaning up the Azure cloud sandbox. Please be advised that this script is destructive.
+# Uncomment the below lines to download the script for cleaning up the Azure cloud sandbox. Please be advised that this script is destructive.
 # Invoke-WebRequest -Uri "https://raw.githubusercontent.com/BrentenDovey-ACG/AZ-104_Azure_Administrator/master/cleanerScript.ps1" -OutFile ~/cleanerScript.ps1
-
+# . ~/cleanerScript.ps1
